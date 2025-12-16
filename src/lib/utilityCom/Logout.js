@@ -7,9 +7,9 @@ const Logout = () => {
     const handleClick = async () => {
         setIsLoading(true);
         try {
-            const res = await fetch("/api/login", { method: "GET" });
+            const res = await fetch("/api/user/logOut", { method: "GET" });
             const data = await res.json();
-            if(data.status === "ok"){
+            if(data.status === "success"){
                 window.location.replace("/")
             }
         } catch (error) {
@@ -20,7 +20,7 @@ const Logout = () => {
     };
 
     return (
-        <div className="flex justify-center items-center p-4">
+        <div className="flex items-center justify-center p-4">
             <button 
                 onClick={handleClick}
                 disabled={isLoading}
@@ -45,14 +45,14 @@ const Logout = () => {
             >
                 {isLoading ? (
                     <>
-                        <div className="animate-spin rounded-full h-5 w-5 border-2 border-white border-t-transparent"></div>
+                        <div className="w-5 h-5 border-2 border-white rounded-full animate-spin border-t-transparent"></div>
                         <span>Logging out...</span>
                     </>
                 ) : (
                     <>
-                        <span className="group-hover:scale-110 transition-transform">🚪</span>
+                        <span className="transition-transform group-hover:scale-110">🚪</span>
                         <span>Log Out</span>
-                        <span className="opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300">→</span>
+                        <span className="transition-all duration-300 opacity-0 group-hover:opacity-100 group-hover:translate-x-1">→</span>
                     </>
                 )}
             </button>

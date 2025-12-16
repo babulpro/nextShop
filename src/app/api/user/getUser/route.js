@@ -10,11 +10,7 @@ export async function POST(req,res){
     try{
         const data = await req.json(); 
         console.log(data)
-        const findUser = await prisma.user.findUnique({
-            where:{
-                email:data.email
-            }
-        })
+        const findUser = await prisma.user.findMany()
         if(!findUser){
             return NextResponse.json({
                 status:"fail",msg:"user not found"
